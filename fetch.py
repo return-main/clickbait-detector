@@ -19,9 +19,9 @@ with open("clickbait-top-reddit.txt", "w") as outfile:
         if response.status_code == 200:
             response = response.json()
             params["after"] = response["data"]["after"]
-            titles += [each["data"]["title"].encode("ascii", "ignore").replace("\n", "").split("|")[0] for each in response["data"]["children"]]
-	else:
-	    time.sleep(10)
-	    print "error"
+            titles += [each["data"]["title"].encode("ascii", "ignore").replace(
+                "\n", "").split("|")[0] for each in response["data"]["children"]]
+        else:
+            time.sleep(10)
+            print "error"
     outfile.write("\n".join(titles))
-
