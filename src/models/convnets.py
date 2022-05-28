@@ -1,7 +1,5 @@
-from keras.models import Sequential, Model
-from keras.layers import Convolution1D, MaxPooling1D, Flatten, Dense, Embedding, Activation, BatchNormalization, GlobalAveragePooling1D, Input, merge, ZeroPadding1D
-from keras.preprocessing import sequence
-from keras.optimizers import RMSprop, Adam, SGD
+from keras.models import Sequential
+from keras.layers import Convolution1D, MaxPooling1D, Flatten, Dense, Embedding, Activation, BatchNormalization
 from keras.regularizers import l2
 
 def ConvolutionalNet(vocabulary_size, embedding_dimension, input_length, embedding_weights=None):
