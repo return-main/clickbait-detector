@@ -4,9 +4,10 @@ Detects clickbait headlines using deep learning.
 
 Find the Chrome Extension [here](https://chrome.google.com/webstore/detail/this-is-clickbait/ppklhdlfnadnlnllnenceabhldpnafjm) ( built by [rahulkapoor90](https://github.com/rahulkapoor90/This-is-Clickbait) )
 
-The doi for this project is https://doi.org/10.17605/OSF.IO/T3UJ9 
+The doi for this project is <https://doi.org/10.17605/OSF.IO/T3UJ9>
 
 ## Requirements
+
 - Python 2.7.12
 - Keras 1.2.1
 - Tensorflow 0.12.1
@@ -14,6 +15,7 @@ The doi for this project is https://doi.org/10.17605/OSF.IO/T3UJ9
 - NLTK 3.2.1
 
 ## Getting Started
+
 1. Install a virtualenv in the project directory
 
        virtualenv venv
@@ -23,19 +25,44 @@ The doi for this project is https://doi.org/10.17605/OSF.IO/T3UJ9
 
           cd venv/Scripts
           activate
-      
+
     - On Linux
-    
+
           source venv/bin/activate
 
 3. Install the requirements
 
         pip install -r requirements.txt
-        
+
 4. Try it out!
     Try running one of the [examples](#examples).
 
+## Docker
+
+### Bin
+
+```shell
+docker build -t clickbait-detector -f detect.Dockerfile .
+docker run clickbait-detector "Just 22 Cute Animal Pictures You Need Right Now"
+```
+
+### Server
+
+Server:
+
+```shell
+docker build -t clickbait-detector-server -f server.Dockerfile .
+docker run -p 8000:8000 clickbait-detector-server
+```
+
+Client:
+
+```shell
+curl --get --data-urlencode "headline=Just 22 Cute Animal Pictures You Need Right Now" http://127.0.0.1:8000/detect
+```
+
 ## Accuracy
+
 Training Accuracy after 25 epochs = 93.8 % (loss = 0.1484)
 
 Validation Accuracy after 25 epochs = 90.15 % (loss = 0.2670)
@@ -67,6 +94,7 @@ headline is 0.05 % clickbaity
 ```
 
 ## Model Summary
+
 ```
 ____________________________________________________________________________________________________
 Layer (type)                     Output Shape          Param #     Connected to                     
@@ -108,25 +136,26 @@ ________________________________________________________________________________
 
 ```
 
-
 ## Data
+
 The dataset consists of about 12,000 headlines half of which are clickbait.
 The clickbait headlines were fetched from BuzzFeed, NewsWeek, The Times of India and,
 The Huffington Post.
 The genuine/non-clickbait headlines were fetched from The Hindu, The Guardian, The Economist,
 TechCrunch, The wall street journal, National Geographic and, The Indian Express.
 
-Some of the data was from 
+Some of the data was from
 [peterldowns's clickbait-classifier repository](https://github.com/peterldowns/clickbait-classifier.git)
 
-
 ## Pretrained Embeddings
+
 I used Stanford's Glove Pretrained Embeddings PCA-ed to 30 dimensions. This sped up the
 training.
 
-
 ## Improving accuracy
-To improve Accuracy, 
+
+To improve Accuracy,
+
 - Increase Embedding layer dimension (Currently it is 30) - `src/preprocess_embeddings.py`
 - Use more data
 - Increase vocabulary size - `src/preprocess_text.py`
