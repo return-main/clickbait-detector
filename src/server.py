@@ -1,11 +1,19 @@
-from os import environ
-from flask import Flask, jsonify, request
 from detect import predictor
+from flask import Flask, jsonify, request
+# from flask_caching import Cache
+from os import environ
 
 app = Flask(__name__)
 
+# cache = Cache(config={
+#     'CACHE_TYPE': 'FileSystemCache',
+#     'CACHE_DIR': 'cache',
+#     'CACHE_THRESHOLD': 100000,
+# })
+# cache.init_app(app)
 
 @app.route("/detect", methods=["GET"])
+# @cache.cached(timeout=50)
 def detect():
     headline = request.args.get("headline", "")
     if headline == "":
