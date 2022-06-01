@@ -1,6 +1,6 @@
+from os import environ
 from flask import Flask, jsonify, request
 from detect import predictor
-
 
 app = Flask(__name__)
 
@@ -15,4 +15,5 @@ def detect():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8000)
+    port = environ.get("PORT", 8000)
+    app.run(host='0.0.0.0', port=port)

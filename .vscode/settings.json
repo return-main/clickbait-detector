@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "clickbaitiness",
+        "gunicorn",
         "jsonify",
         "WORKDIR"
     ]
